@@ -31,5 +31,3 @@ spec:
       containers:
         - name: airport-service
           image: gcr.io/aviralmansingka-pulumi-gke/airport-service
-        - name: mongo
-          image: mongo:latest
