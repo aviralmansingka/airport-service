@@ -6,6 +6,8 @@ build:
   artifacts:
     - image: gcr.io/aviralmansingka-pulumi-gke/airport-service
       jib: {}
+  googleCloudBuild:
+    projectId: aviralmansingka-pulumi-gke
 deploy:
   kubectl:
     manifests:

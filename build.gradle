@@ -1,5 +1,12 @@
+buildscript {
+  dependencies {
+    classpath('com.google.cloud.tools:jib-native-image-extension-gradle:0.1.0')
+  }
+}
+
 plugins {
-	id 'org.springframework.boot' version '2.7.4'
+	id 'org.springframework.boot' version '2.7.1'
+  id 'org.springframework.experimental.aot' version '0.12.1'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
   id 'com.google.cloud.tools.jib' version '3.3.1'
 	id 'java'
@@ -11,6 +18,7 @@ sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
+  maven { url 'https://repo.spring.io/release' }
 }
 
 ext {
@@ -24,6 +32,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
   implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-client-config'
 
+  implementation 'org.springframework.experimental:spring-native:0.12.1'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
@@ -36,4 +46,15 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jib {
+  pluginExtensions {
+    pluginExtension {
+        implementation = 'com.google.cloud.tools.jib.gradle.extension.nativeimage.JibNativeImageExtension'
+        properties = [
+            imageName: 'airport-service'
+        ]
+    }
+  }
 }
