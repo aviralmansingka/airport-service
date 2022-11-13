@@ -1,3 +1,4 @@
+encrypt.key: aviral
 spring:
   cloud:
     kubernetes:
@@ -8,3 +9,4 @@ spring:
             name: airport-service
       reload:
         enabled: true
+        strategy: restart_context

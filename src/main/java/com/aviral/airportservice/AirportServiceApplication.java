@@ -55,7 +55,7 @@ class AirportController {
 
   @GetMapping("/hello")
   public final Mono<String> hello() {
-    return Mono.just("Hello from servlet constant (with skaffold update) " + message + "\n");
+    return Mono.just(" Hello from servlet constant (with skaffold update) " + message + "\n");
   }
 
   @GetMapping
