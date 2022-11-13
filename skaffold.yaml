@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: airport-service
+build:
+  artifacts:
+    - image: gcr.io/aviralmansingka-pulumi-gke/airport-service
+      jib: {}
+deploy:
+  kubectl:
+    manifests:
+      - manifests/*
+portForward:
+  - resourceType: service
+    resourceName: airport-service
+    port: 8080
