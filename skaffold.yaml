@@ -3,11 +3,12 @@ kind: Config
 metadata:
   name: airport-service
 build:
-  artifacts:
-    - image: gcr.io/aviralmansingka-pulumi-gke/airport-service
-      jib: {}
   googleCloudBuild:
     projectId: aviralmansingka-pulumi-gke
+  artifacts:
+    - image: gcr.io/aviralmansingka-pulumi-gke/airport-service
+      buildpacks:
+        builder: gcr.io/paketo-buildpacks/spring-boot
 deploy:
   kubectl:
     manifests:

@@ -1,4 +1,5 @@
 spring.application.name: airport-service
+
 management:
   endpoint:
     restart:
