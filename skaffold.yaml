@@ -3,6 +3,9 @@ kind: Config
 metadata:
   name: airport-service
 build:
+  googleCloudBuild:
+    projectId: aviralmansingka-pulumi-gke
+    gradleImage: gradle:7.5.1-jdk17
   artifacts:
     - image: gcr.io/aviralmansingka-pulumi-gke/airport-service
       jib: {}
@@ -10,7 +13,3 @@ deploy:
   kubectl:
     manifests:
       - manifests/*
-portForward:
-  - resourceType: service
-    resourceName: airport-service
-    port: 8080
